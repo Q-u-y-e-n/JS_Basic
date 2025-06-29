@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="themify-icons-font\themify-icons\themify-icons.css">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <style>
+        .red {
+            color: red;
+        }
+
+        .pink {
+            background-color: pink
+        }
+
+        ul {
+            display: none
+        }
+
+        input:focus~ul {
+            display: block
+        }
+    </style>
+</head>
+
+<body style="background-color: rgb(207, 205, 201);">
+
+
+    <!-- <div class="box"> -->
+    <!-- khi sự kiện click diễn ra thì sẽ in ra một dãy số ngẫu nhiên -->
+    <!-- this sẽ trả về element node của h1-->
+    <!-- <h1><span>Hello Girl, have a good day!</span></h1> -->
+    <!-- </div> -->
+
+    <!-- <input type="text"> -->
+    <!-- <input type="checkbox">
+
+    <select name="" id="">
+        <option value="value1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+    </select> -->
+
+
+    <!-- <a href="https://f8.edu.vn">Học lập trình</a> <br>
+    <a href="https://google.com.vn">Google</a> -->
+
+    <!-- <input placeholder="Tìm kiếm" type="text">
+    <ul>
+        <li>Java</li>
+        <li>PHP</li>
+        <li>Golang</li>
+    </ul> -->
+
+    <!-- 
+    <div class="">
+        <BUTTON>Click me</BUTTON>
+    </div> -->
+
+    <!-- <h1 class="heading">
+        DOM event
+    </h1>
+    <h1 class="heading">
+        DOM event 1
+    </h1>
+    <h1 class="heading">
+        DOM event 2
+    </h1> -->
+
+    <!-- ./ thể hiển trỏ đến file ngang cấp (ở đây là index và main) -->
+
+
+
+
+
+
+
+    <!-- bắt đầu bài thực hành 1-- form validation -->
+
+
+    <div class="container">
+        <form action="" class="form-container" id="form-1">
+            <div class="form-heading">
+                <h3 class="form-heading__title">
+                    Thành viên đăng kí
+                </h3>
+                <p class="form-heading__slogen">Cùng nhau học tập miễn phí tại F8 <i style="color: red;"
+                        class="ti-heart"></i></p>
+
+            </div>
+            <div class="form-input">
+                <div class="form-input-item">
+                    <label for="fullname" class="form-input-item__label">Tên đầy đủ</label>
+                    <input id="fullname" name="fullname" type="text" class="form-input-item__input"
+                        placeholder="VD: Ngọc Quyên">
+                    <span class="form-message"></span>
+                </div>
+                <div class="form-input-item">
+                    <label for="email" class="form-input-item__label">Email</label>
+                    <input id="email" name="email" type="text" class="form-input-item__input"
+                        placeholder="VD: email@domain.com">
+                    <span class="form-message"></span>
+                </div>
+                <div class="form-input-item">
+                    <label for="password" class="form-input-item__label">Mật khẩu</label>
+                    <input id="password" name="password" type="password" class="form-input-item__input"
+                        placeholder="Nhập mật khẩu">
+                    <span class="form-message"></span>
+                </div>
+                <div class="form-input-item">
+                    <label for="passwordAgain" class="form-input-item__label">Nhập lại mật khẩu</label>
+                    <input id="passwordAgain" name="passwordAgain" type="password" class="form-input-item__input"
+                        placeholder="Nhập lại mật khẩu">
+                    <span class="form-message"></span>
+                </div>
+            </div>
+            <div class="form-btn">
+                <button type="submit" class="form-btn__btn">Đăng ký</button>
+            </div>
+
+        </form>
+    </div>
+
+
+
+    <script src="./main.js"></script>
+    <script src="./practise.js">
+
+    </script>
+    <script src="./Validator.js">
+
+    </script>
+    <script>// my expect - mong muốn
+        Validator(
+            {
+                errorSelector: '.form-message',
+                form: '#form-1',
+                rules: [
+                    // giống như đang chạy một hàm vì nó có cặp ngoặc đơn bao quanh đối sô truyền vào
+                    Validator.isRequired('#fullname'),
+                    Validator.isRequired('#email'),
+                    Validator.isEmail('#email'),
+                    Validator.isRequired('#password'),
+                    Validator.minLength('#password', 6),
+                    Validator.isRequired('#passwordAgain'),
+                    Validator.isConfirmation('#passwordAgain', function () {
+                        return document.querySelector('#form-1 #password').value;
+                    }, 'Mật khẩu nhập lại không chính xác')
+
+                ],
+                onSubmit: function (data) {
+                    // call API
+                    console.log(data);
+                }
+            }
+        )</script>
+
+
+</body>
+
+</html>
