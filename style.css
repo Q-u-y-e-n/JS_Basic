@@ -104,3 +104,17 @@ html {
 
 
 /* ---------------- */
+
+.gender-label {
+    margin-right: 10px;
+    font-weight: 300;
+    font-size: 1.3rem
+}
+
+.form-input-item__gender {
+    display: flex
+}
+
+.gender-input__next {
+    margin-right: 20px
+}

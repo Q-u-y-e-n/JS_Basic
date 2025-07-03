@@ -95,8 +95,13 @@
             <div class="form-input">
                 <div class="form-input-item">
                     <label for="fullname" class="form-input-item__label">Tên đầy đủ</label>
-                    <input id="fullname" name="fullname" type="text" class="form-input-item__input"
-                        placeholder="VD: Ngọc Quyên">
+
+                    <div class="">
+                        <div class="">
+                            <input id="fullname" name="fullname" type="text" class="form-input-item__input"
+                                placeholder="VD: Ngọc Quyên">
+                        </div>
+                    </div>
                     <span class="form-message"></span>
                 </div>
                 <div class="form-input-item">
@@ -111,10 +116,43 @@
                         placeholder="Nhập mật khẩu">
                     <span class="form-message"></span>
                 </div>
+
                 <div class="form-input-item">
                     <label for="passwordAgain" class="form-input-item__label">Nhập lại mật khẩu</label>
                     <input id="passwordAgain" name="passwordAgain" type="password" class="form-input-item__input"
                         placeholder="Nhập lại mật khẩu">
+                    <span class="form-message"></span>
+                </div>
+                <div class="form-input-item">
+                    <label for="fileAvatar" class="form-input-item__label">Ảnh đại diện</label>
+                    <input id="fileAvatar" name="fileAvatar" type="file" class="form-input-item__input"
+                        placeholder="Nhập lại mật khẩu">
+                    <span class="form-message"></span>
+                </div>
+                <div class="form-input-item">
+                    <label for="province" class="form-input-item__label">Chọn Tỉnh/TP</label>
+                    <select id="province" name="province" class="form-input-item__input">
+                        <option value="">--Chọn Tỉnh/TP--</option>
+                        <option value="LA">Long An</option>
+                        <option value="TV">Trà Vinh</option>
+                    </select>
+                    <span class="form-message"></span>
+                </div>
+                <div class="form-input-item">
+                    <label class="form-input-item__label">Giới
+                        tính</label>
+                    <div class="form-input-item__gender">
+                        <label class="gender-label" class="form-input-item__label">Nam</label>
+                        <input class="gender-input__next" value="male" id="gender" type="checkbox" name="gender">
+
+                        <label class="gender-label" class="form-input-item__label">Nữ</label>
+                        <input class="gender-input__next" value="female" id="gender" type="checkbox" name="gender">
+
+                        <label class="gender-label" class="form-input-item__label">Khác</label>
+                        <input value="other" id="gender" type="checkbox" name="gender">
+                    </div>
+
+
                     <span class="form-message"></span>
                 </div>
             </div>
@@ -135,21 +173,28 @@
 
     </script>
     <script>// my expect - mong muốn
+
+        // kiểm tra dữ liệu người dùng nhập vào 
         Validator(
             {
+                formGroupSelector: '.form-input-item',
                 errorSelector: '.form-message',
                 form: '#form-1',
                 rules: [
                     // giống như đang chạy một hàm vì nó có cặp ngoặc đơn bao quanh đối sô truyền vào
-                    Validator.isRequired('#fullname'),
+                    Validator.isRequired('#fullname', 'Vui lòng nhập tên đầy đủ'),
                     Validator.isRequired('#email'),
                     Validator.isEmail('#email'),
                     Validator.isRequired('#password'),
-                    Validator.minLength('#password', 6),
+                    Validator.minLength('#password', 5),
+                    Validator.isRequired('input[name="gender"]'),
+                    Validator.isRequired('#province'),
+                    Validator.isRequired('#fileAvatar'),
                     Validator.isRequired('#passwordAgain'),
-                    Validator.isConfirmation('#passwordAgain', function () {
+                    Validator.isConfirmed('#passwordAgain', function () {
                         return document.querySelector('#form-1 #password').value;
-                    }, 'Mật khẩu nhập lại không chính xác')
+                    }, 'Mật khẩu nhập lại không chính xác'),
+
 
                 ],
                 onSubmit: function (data) {
